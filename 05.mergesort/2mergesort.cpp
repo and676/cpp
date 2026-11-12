@@ -20,9 +20,10 @@ void merge(int l, int m, int r) {
 
 // 归并排序递归版
 // T(n) = 2 * T(n/2) + O(n)，master 公式得 O(n log n)，空间 O(n)
-void mergeSort1(int l, int r) {
+void mergeSort1(int l, int r)
+ {
     if (l == r) return;
-    int m = (l + r) / 2;
+    int m = l+((r-l)>>1);
     mergeSort1(l, m);
     mergeSort1(m + 1, r);
     merge(l, m, r);
