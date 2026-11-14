@@ -9,17 +9,16 @@ int help_[maxn];
 int n;                                     
 long long merge(int l, int m, int r) {
     long long ans = 0; 
+   long long sum = 0;//数字有可能溢出注意初始化位置
+        
     for (int  i = l，j = m+1; j <= r; j++) {
-        long long sum = 0;//数字有可能溢出
         while (i <= m && arr[i] <= arr[j]) {
             sum += arr[i++];
         }
         ans += sum;
     }
     int i = l, j = m + 1, k = l;
-    while (i <= m && j <= r) {  
-        help_[k++] = (arr[i] <= arr[j]) ? arr[i++] : arr[j++];
-    }
+    while (i <= m && j <= r)  help_[k++] = (arr[i] <= arr[j]) ? arr[i++] : arr[j++];
     while (i <= m) help_[k++] = arr[i++];
     while (j <= r) help_[k++] = arr[j++];
     for (int p = l; p <= r; p++) arr[p] = help_[p];
