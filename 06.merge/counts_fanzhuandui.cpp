@@ -43,10 +43,11 @@ int main() {
 }
 //小和问题和反转对问题的差异
 /*	                    小和问题                              	        翻转对问题
-定义	              找每个数左边比它小的数的和	        找每个数左边比它两倍还大的数的个数
-谁是"被找"的	右半部分的每个 arr[j]	                 左半部分的每个 arr[i]
-指针方向	      固定 j 在右半，移动 i 扫左半	        固定 i 在左半，移动 j 扫右半
-外层循环	          j 从 m+1 走到 r	                    i 从 l 走到 m*/
+定义	                找每个数左边比它小的数的和	        找每个数左边比它两倍还大的数的个数
+谁是"被找"的	右半部分的每个 arr[j]	                        左半部分的每个 arr[i]
+指针方向	        固定 j 在右半，移动 i 扫左半	        固定 i 在左半，移动 j 扫右半
+外层循环	          j 从 m+1 走到 r	                        i 从 l 走到 m
+*/
 
 
 //外层循环遍历的是"主动发起比较"的那一边；内层 while 移动的是"被筛选"的那一边。
@@ -56,9 +57,11 @@ int main() {
 
 
 //对于long long
+/*
 写法           	 					实际运算过程 													结果 
 arr[i] > arr[j]*2						int * int = int，	可能溢出，再比较									❌ 错误
 (long long)arr[i] > arr[j]*2				右边 arr[j]*2 仍是 int 运算，溢出后才转成 long long 去跟左边比				❌ 还是错，右边已经炸了
 (long long)arr[i] > (long long)arr[j] * 2	arr[j] 先转 long long，再乘 2（2 被提升为 long long），全程 long long 运算		✓ 正确
 arr[i] > (long long)arr[j] * 2			同上，右边是 long long 运算，左边 int 自动提升							✓ 正确
 (long long)(arr[j] * 2)					先算 arr[j]*2（int 乘法），溢出后再强转								❌ 括号包住了，死得更快
+*/
